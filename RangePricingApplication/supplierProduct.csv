@@ -1,0 +1,8 @@
+supplierName,productName,floorPrice,ceilingPrice,targetPrice
+Supplier1,SoftwareProduct1,50,100,80
+Supplier1,SoftwareProduct2,60,120,90
+Supplier2,HardwareProduct1,80,150,120
+Supplier2,HardwareProduct2,100,180,150
+Supplier3,ElectronicsProduct1,120,200,160
+Supplier3,ElectronicsProduct2,150,250,200
+

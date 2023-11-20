@@ -1,0 +1,21 @@
+username,password,person_id,role
+srivarini,password123,Srivarini,Admin
+alice_smith,pass456,Alice Smith,Sales
+bob_jones,securePass,Bob Jones,Marketing
+jane_doe,janePass789,Jane Doe,Customer
+renuka,renuka,Renuka,Customer
+sales_user1,salesPass1,sales_user1,Sales
+sales_user2,salesPass2,sales_user2,Sales
+sales_user3,salesPass3,sales_user3,Sales
+sales_user4,salesPass4,sales_user4,Sales
+sales_user5,salesPass5,sales_user5,Sales
+sales_user6,salesPass6,10sales_user611,Sales
+marketing_user1,marketingPass1,marketing_user1,Marketing
+marketing_user2,marketingPass2,marketing_user2,Marketing
+marketing_user3,marketingPass3,marketing_user3,Marketing
+customer_user1,customerPass1,customer_user1,Customer
+customer_user2,customerPass2,customer_user2,Customer
+customer_user3,customerPass3,customer_user3,Customer
+customer_user4,customerPass4,customer_user4,Customer
+customer_user5,customerPass5,customer_user5,Customer
+
