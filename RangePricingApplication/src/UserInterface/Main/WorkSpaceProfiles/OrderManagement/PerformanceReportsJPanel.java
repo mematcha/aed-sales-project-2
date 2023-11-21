@@ -8,6 +8,7 @@ import TheBusiness.Business.Business;
 import TheBusiness.MarketModel.Market;
 import TheBusiness.MarketModel.MarketCatalog;
 import TheBusiness.OrderManagement.MasterOrderList;
+import TheBusiness.OrderManagement.Order;
 import TheBusiness.ProductManagement.Product;
 import TheBusiness.Supplier.Supplier;
 import UserInterface.Main.WorkSpaceProfiles.BusinessManagerWorkAreaJPanel;
@@ -49,7 +50,6 @@ public class PerformanceReportsJPanel extends javax.swing.JPanel {
      }
      private void populateTop3Sols(){
          MasterOrderList mol =this.business.getMasterOrderList();
-         
      }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,7 +89,7 @@ public class PerformanceReportsJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Performance Report - Sales");
 
-        jLabel2.setText("top 3 solutions ");
+        jLabel2.setText("top 3 Orders ");
 
         jLabel3.setText("top 3 customers");
 
