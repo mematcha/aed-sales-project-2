@@ -56,8 +56,11 @@ public class ReviewCommisionJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        txtCommission = new javax.swing.JTextField();
+        TotalCommissionlbl = new javax.swing.JLabel();
+        TotalCommissiontxt = new javax.swing.JTextField();
+
+        setBackground(new java.awt.Color(255, 102, 51));
+        setForeground(new java.awt.Color(255, 153, 102));
 
         btnBack.setText("<Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -66,6 +69,7 @@ public class ReviewCommisionJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Review Commission");
 
@@ -90,10 +94,13 @@ public class ReviewCommisionJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Update My Commission");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        TotalCommissionlbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        TotalCommissionlbl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        TotalCommissionlbl.setText("Total Commission:");
+
+        TotalCommissiontxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                TotalCommissiontxtActionPerformed(evt);
             }
         });
 
@@ -109,18 +116,16 @@ public class ReviewCommisionJPanel extends javax.swing.JPanel {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txtCommission, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBack)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(TotalCommissionlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1)
-                                .addGap(141, 141, 141))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnBack)
-                                .addGap(277, 277, 277))))))
+                                .addComponent(TotalCommissiontxt, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,13 +134,13 @@ public class ReviewCommisionJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(txtCommission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TotalCommissionlbl)
+                    .addComponent(TotalCommissiontxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(btnBack)
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addGap(131, 131, 131))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -147,40 +152,18 @@ public class ReviewCommisionJPanel extends javax.swing.JPanel {
      ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void TotalCommissiontxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalCommissiontxtActionPerformed
         // TODO add your handling code here:
-        int selectedRow = jTable1.getSelectedRow();
-    if (selectedRow < 0) {
-        JOptionPane.showMessageDialog(this, "Please select an order to update.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    try {
-        // Parse the commission value from the text field
-        float newCommission = Float.parseFloat(txtCommission.getText());
-
-        // Get the order ID from the selected row
-        int orderId = (Integer) jTable1.getValueAt(selectedRow, 0);
-
-        // Update the commission for the selected order
-        updateCommissionForOrder(orderId, newCommission);
-
-        // Refresh the table to show updated commission
-        populateOrderTable();
-
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Invalid commission value. Please enter a numeric value.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_TotalCommissiontxtActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel TotalCommissionlbl;
+    private javax.swing.JTextField TotalCommissiontxt;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtCommission;
     // End of variables declaration//GEN-END:variables
 
     private void populateOrderTable() {
@@ -188,26 +171,31 @@ public class ReviewCommisionJPanel extends javax.swing.JPanel {
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.setRowCount(0); // Clear existing rows
 
+    float totalCommission = 0; // Initialize the total commission variable
+
     ArrayList<Order> salesOrders = salesperson.salesorders;
     for (Order order : salesOrders) {
-        // Assuming 'CustomerProfile' has a method to get the customer's name
         String customerName = order.getCustomer().getPerson().getPersonId();
         float commission = order.getCommission();
-        String status = order.getStatus(); // Get the status of the order
+        String status = order.getStatus();
 
-        
-
-        // Create a table row with the order ID, customer name, and commission
         Object[] row = new Object[]{
-            order.getModelNumber(),
-            customerName,
-            commission,
-            status
+                order.getModelNumber(),
+                customerName,
+                commission,
+                status
         };
 
-        // Add the row to the table model
         model.addRow(row);
+
+        // Update the total commission with the commission from the current order
+        totalCommission += commission;
     }
+
+    // Display the total commission in the TotalCommissiontxt field
+    TotalCommissiontxt.setText(String.valueOf(totalCommission));
+    // Disable editing of the TotalCommissiontxt field
+    TotalCommissiontxt.setEditable(false);
 
     }
 
