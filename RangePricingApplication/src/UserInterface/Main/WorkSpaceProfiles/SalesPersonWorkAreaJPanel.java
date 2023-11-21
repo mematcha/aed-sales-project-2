@@ -32,11 +32,11 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form UnitRiskWorkArea
+     *
      * @param b
      * @param spp
      * @param clp
      */
-
     public SalesPersonWorkAreaJPanel(Business b, SalesPersonProfile spp, JPanel clp) {
 
         business = b;
@@ -47,12 +47,11 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     public SalesPersonWorkAreaJPanel(Business b, JPanel cp) {
-        business=b;
-        this.CardSequencePanel=cp;
+        business = b;
+        this.CardSequencePanel = cp;
         initComponents();
     }
 
-   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -174,15 +173,13 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnServeCustomerIdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServeCustomerIdentifyResourceAssetsActionPerformed
-        
-// TODO add your handling code here:
 
+// TODO add your handling code here:
 // 
 //        String customername = customerNameTextField.getText();
 //        if (customername.isEmpty()) return;
 //        CustomerProfile selectedcustomer = business.getCustomerDirectory().findCustomer(customername);
-
-        ProcessOrder aos = new ProcessOrder(business,salesperson, CardSequencePanel);
+        ProcessOrder aos = new ProcessOrder(business, salesperson, CardSequencePanel);
 
         CardSequencePanel.add("ManageVulns", aos);
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
@@ -191,8 +188,8 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProfileActionPerformed
         // TODO add your handling code here:
-        ManageProfileJPanel manageProfile=new ManageProfileJPanel(business,CardSequencePanel,salesperson);
-        CardSequencePanel.add("ManageProfileJPanel",manageProfile);
+        ManageProfileJPanel manageProfile = new ManageProfileJPanel(business, CardSequencePanel, salesperson);
+        CardSequencePanel.add("ManageProfileJPanel", manageProfile);
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
 }//GEN-LAST:event_btnManageProfileActionPerformed
@@ -211,31 +208,35 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         CardSequencePanel.removeAll();
-        ReviewCommisionJPanel reviewPanel=new ReviewCommisionJPanel(business,CardSequencePanel,salesperson);
-        CardSequencePanel.add("ReviewCommisionJPanel",reviewPanel);
+        ReviewCommisionJPanel reviewPanel = new ReviewCommisionJPanel(business, CardSequencePanel, salesperson);
+        CardSequencePanel.add("ReviewCommisionJPanel", reviewPanel);
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 }//GEN-LAST:event_btnReviewComissionActionPerformed
 
     private void btnPerformanceReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerformanceReportsActionPerformed
         // TODO add your handling code here:
-    // Display business sales report in the NetBeans console
-    displaySalesDataInConsole();
-}
-
-private void displaySalesDataInConsole() {
-    // Assuming you have a method in the business class to get sales data
-    String salesData = business.getSalesData(); // Replace this with your actual method
-
-    // Check if the sales data is not empty before printing
-    if (!salesData.isEmpty()) {
-        // Print the sales data to the NetBeans console with a label
-        System.out.println("Business Sales Report:\n" + salesData);
-    } else {
-        // Print a message if there is no sales data
-        System.out.println("No sales data available.");
-        
+        // Display business sales report in the NetBeans console
+        CardSequencePanel.removeAll();
+        PerformanceReportsJPanel performanceReport = new PerformanceReportsJPanel(business, CardSequencePanel);
+        CardSequencePanel.add("PerformanceReportsJPanel", performanceReport);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+        //displaySalesDataInConsole();
     }
-        
+
+    private void displaySalesDataInConsole() {
+        // Assuming you have a method in the business class to get sales data
+        String salesData = business.getSalesData(); // Replace this with your actual method
+
+        // Check if the sales data is not empty before printing
+        if (!salesData.isEmpty()) {
+            // Print the sales data to the NetBeans console with a label
+            System.out.println("Business Sales Report:\n" + salesData);
+        } else {
+            // Print a message if there is no sales data
+            System.out.println("No sales data available.");
+
+        }
+
 }//GEN-LAST:event_btnPerformanceReportsActionPerformed
 
 

@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author renuka
+ * @author asus
  */
 public class ManageMarketsJPanel extends javax.swing.JPanel {
 

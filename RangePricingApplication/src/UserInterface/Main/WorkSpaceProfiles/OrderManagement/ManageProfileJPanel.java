@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author renuka
+ * @author asus
  */
 public class ManageProfileJPanel extends javax.swing.JPanel {
 
@@ -141,11 +141,11 @@ public class ManageProfileJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-          SalesPersonWorkAreaJPanel salesPersonWorkAreaPanel = new SalesPersonWorkAreaJPanel(business, CardSequencePanel);
+       
+     SalesPersonWorkAreaJPanel salesPersonWorkAreaPanel = new SalesPersonWorkAreaJPanel(business, salesperson, CardSequencePanel);
 
-    // Remove the current panel and show the previous panel
     CardSequencePanel.removeAll();
-    CardSequencePanel.add("SalesPersonWorkArea", salesPersonWorkAreaPanel);
+    CardSequencePanel.add("SalesPersonWorkAreaJPanel", salesPersonWorkAreaPanel);
     ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
