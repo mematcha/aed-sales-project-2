@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author renuka
+ * @author asus
  */
 public class ManageChannelsJPanel extends javax.swing.JPanel {
 

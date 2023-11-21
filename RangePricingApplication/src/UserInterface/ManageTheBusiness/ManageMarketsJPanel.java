@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 /**
  *
- * @author renuka
+ * @author asus
  */
 public class ManageMarketsJPanel extends javax.swing.JPanel {
 

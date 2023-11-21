@@ -42,7 +42,6 @@ public class ProcessOrder extends javax.swing.JPanel {
     CustomerProfile customer;
     SalesPersonProfile salesperson;
 
-
     public ProcessOrder(Business business, SalesPersonProfile salesperson, JPanel CardSequencePanel) {
         initComponents();
         this.CardSequencePanel = CardSequencePanel;
@@ -52,35 +51,34 @@ public class ProcessOrder extends javax.swing.JPanel {
 //        MasterOrderList mol = business.getMasterOrderList();
 
 //        currentOrder =  mol.newOrder(customer, salesperson); //no order was made yet
-
         populateCustomerComboBox();
-       
+
         initializeTable();
-          // Add the TableModelListener to the OrderItemsTable
+        // Add the TableModelListener to the OrderItemsTable
     }
 
     private void initializeTable() {
 
-    cleanUpCombobox();
-    cleanUpTable();
+        cleanUpCombobox();
+        cleanUpTable();
 
-    // Load suppliers to the combobox
-    ArrayList<Supplier> supplierlist = business.getSupplierDirectory().getSuplierList();
-    
-    if (supplierlist.isEmpty()) {
-        System.out.println("No suppliers found");
-        return;
-    }
+        // Load suppliers to the combobox
+        ArrayList<Supplier> supplierlist = business.getSupplierDirectory().getSuplierList();
 
-    for (Supplier s : supplierlist) {
-        SuppliersComboBox.addItem(s.toString());
-    }
+        if (supplierlist.isEmpty()) {
+            System.out.println("No suppliers found");
+            return;
+        }
 
-    // Set the first supplier as selected by default
-    if (!supplierlist.isEmpty()) {
-        SuppliersComboBox.setSelectedIndex(0);
-        updateSupplierCatalog();
-    }
+        for (Supplier s : supplierlist) {
+            SuppliersComboBox.addItem(s.toString());
+        }
+
+        // Set the first supplier as selected by default
+        if (!supplierlist.isEmpty()) {
+            SuppliersComboBox.setSelectedIndex(0);
+            updateSupplierCatalog();
+        }
     }
 
     public void cleanUpCombobox() {
@@ -94,8 +92,9 @@ public class ProcessOrder extends javax.swing.JPanel {
 
         //Clean the product catalog table
         DefaultTableModel model = (DefaultTableModel) SupplierCatalogTable.getModel();
-        model.setRowCount(0); 
+        model.setRowCount(0);
     }
+
     public void cleanUpItemsTable() {
 
         //Clean the product catalog table
@@ -107,27 +106,27 @@ public class ProcessOrder extends javax.swing.JPanel {
     }
 
     public void refreshSupplierProductCatalogTable() {
-         cleanUpTable();
- 
+        cleanUpTable();
+
 //clear supplier table
         String suppliername = (String) SuppliersComboBox.getSelectedItem();
-    selectedsupplier = business.getSupplierDirectory().findSupplier(suppliername);
+        selectedsupplier = business.getSupplierDirectory().findSupplier(suppliername);
 
-    if (selectedsupplier == null) {
-        return;
-    }
+        if (selectedsupplier == null) {
+            return;
+        }
 
-    ProductCatalog pc = selectedsupplier.getProductCatalog();
+        ProductCatalog pc = selectedsupplier.getProductCatalog();
 
-    for (Product pt : pc.getProductList()) {
-        Object[] row = new Object[4];
-        row[0] = pt;
-        row[1] = pt.getFloorPrice();
-        row[2] = pt.getCeilingPrice();
-        row[3] = pt.getTargetPrice();
+        for (Product pt : pc.getProductList()) {
+            Object[] row = new Object[4];
+            row[0] = pt;
+            row[1] = pt.getFloorPrice();
+            row[2] = pt.getCeilingPrice();
+            row[3] = pt.getTargetPrice();
 
-        ((DefaultTableModel) SupplierCatalogTable.getModel()).addRow(row);
-    }
+            ((DefaultTableModel) SupplierCatalogTable.getModel()).addRow(row);
+        }
 
     }
 
@@ -172,7 +171,7 @@ public class ProcessOrder extends javax.swing.JPanel {
         txtCommission = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        Back = new javax.swing.JButton();
+        Cancelbtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -299,6 +298,12 @@ public class ProcessOrder extends javax.swing.JPanel {
 
         jLabel6.setText("Frequency Below Target");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 150, -1));
+
+        productFrequencyBelowTargetTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productFrequencyBelowTargetTextFieldActionPerformed(evt);
+            }
+        });
         jPanel1.add(productFrequencyBelowTargetTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 150, -1));
 
         jLabel4.setText("Frequency Above Target");
@@ -367,96 +372,96 @@ public class ProcessOrder extends javax.swing.JPanel {
         jLabel13.setText("Sales person");
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 150, 20));
 
-        Back.setText("X Cancel");
-        Back.addActionListener(new java.awt.event.ActionListener() {
+        Cancelbtn.setText("X Cancel");
+        Cancelbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackActionPerformed(evt);
+                CancelbtnActionPerformed(evt);
             }
         });
-        add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 480, 80, -1));
+        add(Cancelbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 480, 80, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) OrderItemsTable.getModel();
-    model.setRowCount(0);
+        model.setRowCount(0);
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextActionPerformed
-    // Get the selected customer's name from the combo box.
-    String selectedCustomerName = (String) customerComboBox.getSelectedItem();
-    CustomerProfile selectedCustomer = null;
-    // Look for the selected customer in the customer directory.
-    for (CustomerProfile cp : business.getCustomerDirectory().getCustomerList()) {
-        if (cp.toString().equals(selectedCustomerName)) {
-            selectedCustomer = cp;
-            break;
+        // Get the selected customer's name from the combo box.
+        String selectedCustomerName = (String) customerComboBox.getSelectedItem();
+        CustomerProfile selectedCustomer = null;
+        // Look for the selected customer in the customer directory.
+        for (CustomerProfile cp : business.getCustomerDirectory().getCustomerList()) {
+            if (cp.toString().equals(selectedCustomerName)) {
+                selectedCustomer = cp;
+                break;
+            }
         }
-    }
 
-    // If no customer is selected, show an error message.
-    if (selectedCustomer == null) {
-        JOptionPane.showMessageDialog(this, "No customer selected.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        // If no customer is selected, show an error message.
+        if (selectedCustomer == null) {
+            JOptionPane.showMessageDialog(this, "No customer selected.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    // Get the commission entered in the txtCommission text field.
-    String commissionText = txtCommission.getText();
-    float commission = 0;
-    try {
-        // Parse the commission text to a float value.
-        commission = Float.parseFloat(commissionText);
-    } catch (NumberFormatException e) {
-        // If the commission is not a valid float, show an error message.
-        JOptionPane.showMessageDialog(this, "Invalid commission entered. Please enter a numeric value.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        // Get the commission entered in the txtCommission text field.
+        String commissionText = txtCommission.getText();
+        float commission = 0;
+        try {
+            // Parse the commission text to a float value.
+            commission = Float.parseFloat(commissionText);
+        } catch (NumberFormatException e) {
+            // If the commission is not a valid float, show an error message.
+            JOptionPane.showMessageDialog(this, "Invalid commission entered. Please enter a numeric value.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    // Get the master order list from the business object.
-    MasterOrderList mol = business.getMasterOrderList();
-    // Create a new order with the selected customer, salesperson, and commission.
-    currentOrder = mol.newOrder(selectedCustomer, salesperson, commission); // The newOrder method needs to accept commission as an argument.
+        // Get the master order list from the business object.
+        MasterOrderList mol = business.getMasterOrderList();
+        // Create a new order with the selected customer, salesperson, and commission.
+        currentOrder = mol.newOrder(selectedCustomer, salesperson, commission); // The newOrder method needs to accept commission as an argument.
 
-    // Update the current order with the selected customer.
-    currentOrder.setCustomer(selectedCustomer);
-    currentOrder.setSalesperson(salesperson);
-    // Clear any previous items from the current order.
-    currentOrder.getOrderitems().clear();
+        // Update the current order with the selected customer.
+        currentOrder.setCustomer(selectedCustomer);
+        currentOrder.setSalesperson(salesperson);
+        // Clear any previous items from the current order.
+        currentOrder.getOrderitems().clear();
 
-    // Get the model from the OrderItemsTable and add each item to the current order.
-    DefaultTableModel model = (DefaultTableModel) OrderItemsTable.getModel();
-    int numRows = model.getRowCount();
-    for (int i = 0; i < numRows; i++) {
-        Product product = (Product) model.getValueAt(i, 0);
-        int actualPrice = (Integer) model.getValueAt(i, 1);
-        int quantity = (Integer) model.getValueAt(i, 2);
-        // Add a new order item to the current order.
-        currentOrder.newOrderItem(product, actualPrice, quantity);
-    }
+        // Get the model from the OrderItemsTable and add each item to the current order.
+        DefaultTableModel model = (DefaultTableModel) OrderItemsTable.getModel();
+        int numRows = model.getRowCount();
+        for (int i = 0; i < numRows; i++) {
+            Product product = (Product) model.getValueAt(i, 0);
+            int actualPrice = (Integer) model.getValueAt(i, 1);
+            int quantity = (Integer) model.getValueAt(i, 2);
+            // Add a new order item to the current order.
+            currentOrder.newOrderItem(product, actualPrice, quantity);
+        }
 
-    // Submit the current order.
-    currentOrder.Submit(); // This method will likely change the order's status to "Submitted".
+        // Submit the current order.
+        currentOrder.Submit(); // This method will likely change the order's status to "Submitted".
 
-    // Show a confirmation message with the order number.
-    JOptionPane.showMessageDialog(this, "Order #" + currentOrder.getModelNumber() + " has been successfully submitted.", "Order Submitted", JOptionPane.INFORMATION_MESSAGE);
+        // Show a confirmation message with the order number.
+        JOptionPane.showMessageDialog(this, "Order #" + currentOrder.getModelNumber() + " has been successfully submitted.", "Order Submitted", JOptionPane.INFORMATION_MESSAGE);
 
-
+        btnBackActionPerformed(evt);
 
     }//GEN-LAST:event_NextActionPerformed
 
     private void SupplierCatalogTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupplierCatalogTableMousePressed
-         int selectedRowIndex = SupplierCatalogTable.getSelectedRow();
-            if (selectedRowIndex < 0) {
-                return; // No row selected, exit the method
-            }
+        int selectedRowIndex = SupplierCatalogTable.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            return; // No row selected, exit the method
+        }
 
-            // Assuming the first column contains the Product object
-            Product selectedProduct = (Product) SupplierCatalogTable.getValueAt(selectedRowIndex, 0);
-            if (selectedProduct != null) {
-                displaySelectedProductSummary(selectedProduct);
-            } else {
-                JOptionPane.showMessageDialog(null, "Invalid product selection.");
-            }
+        // Assuming the first column contains the Product object
+        Product selectedProduct = (Product) SupplierCatalogTable.getValueAt(selectedRowIndex, 0);
+        if (selectedProduct != null) {
+            displaySelectedProductSummary(selectedProduct);
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid product selection.");
+        }
     }//GEN-LAST:event_SupplierCatalogTableMousePressed
 
     private void productNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productNameTextFieldActionPerformed
@@ -485,77 +490,76 @@ public class ProcessOrder extends javax.swing.JPanel {
 
     private void AddProductItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductItemActionPerformed
         // TODO add your handling code here:
-    int selectedRowIndex = SupplierCatalogTable.getSelectedRow();
+        int selectedRowIndex = SupplierCatalogTable.getSelectedRow();
 
-    if (selectedRowIndex < 0) {
-        JOptionPane.showMessageDialog(null, "Please select a product to add.");
-        return;
-    }
-
-    selectedproduct = (Product) SupplierCatalogTable.getValueAt(selectedRowIndex, 0);
-    if (selectedproduct == null) {
-        JOptionPane.showMessageDialog(null, "Invalid product selection.");
-        return;
-    }
-
-    DefaultTableModel orderItemsModel = (DefaultTableModel) OrderItemsTable.getModel();
-    boolean productExists = false;
-
-    for (int i = 0; i < orderItemsModel.getRowCount(); i++) {
-        Product productInTable = (Product) orderItemsModel.getValueAt(i, 0);
-        if (productInTable.equals(selectedproduct)) {
-            int existingQuantity = (Integer) orderItemsModel.getValueAt(i, 2);
-            orderItemsModel.setValueAt(existingQuantity + 1, i, 2);
-            orderItemsModel.setValueAt((existingQuantity + 1) * selectedproduct.getTargetPrice(), i, 3);
-            productExists = true;
-            break;
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a product to add.");
+            return;
         }
-    }
 
-    if (!productExists) {
-        int actualPrice = selectedproduct.getTargetPrice();
-        int quantity = 1;
+        selectedproduct = (Product) SupplierCatalogTable.getValueAt(selectedRowIndex, 0);
+        if (selectedproduct == null) {
+            JOptionPane.showMessageDialog(null, "Invalid product selection.");
+            return;
+        }
 
-        orderItemsModel.addRow(new Object[]{
+        DefaultTableModel orderItemsModel = (DefaultTableModel) OrderItemsTable.getModel();
+        boolean productExists = false;
+
+        for (int i = 0; i < orderItemsModel.getRowCount(); i++) {
+            Product productInTable = (Product) orderItemsModel.getValueAt(i, 0);
+            if (productInTable.equals(selectedproduct)) {
+                int existingQuantity = (Integer) orderItemsModel.getValueAt(i, 2);
+                orderItemsModel.setValueAt(existingQuantity + 1, i, 2);
+                orderItemsModel.setValueAt((existingQuantity + 1) * selectedproduct.getTargetPrice(), i, 3);
+                productExists = true;
+                break;
+            }
+        }
+
+        if (!productExists) {
+            int actualPrice = selectedproduct.getTargetPrice();
+            int quantity = 1;
+
+            orderItemsModel.addRow(new Object[]{
                 selectedproduct,
                 actualPrice,
                 quantity,
                 actualPrice * quantity
-        });
-    }
+            });
+        }
 
-    // Calculate and update the total commission based on the added product
-    float totalCommission = 0;
-    for (int i = 0; i < orderItemsModel.getRowCount(); i++) {
-        Product product = (Product) orderItemsModel.getValueAt(i, 0);
-        int actualPrice = (Integer) orderItemsModel.getValueAt(i, 1);
-        int quantity = (Integer) orderItemsModel.getValueAt(i, 2);
-        totalCommission += 0.05 * (actualPrice * quantity);
-    }
+        // Calculate and update the total commission based on the added product
+        float totalCommission = 0;
+        for (int i = 0; i < orderItemsModel.getRowCount(); i++) {
+            Product product = (Product) orderItemsModel.getValueAt(i, 0);
+            int actualPrice = (Integer) orderItemsModel.getValueAt(i, 1);
+            int quantity = (Integer) orderItemsModel.getValueAt(i, 2);
+            totalCommission += 0.05 * (actualPrice * quantity);
+        }
 
-    // Update the txtCommission field and disable its editing
-    txtCommission.setText(String.valueOf(totalCommission));
-    txtCommission.setEditable(false);
+        // Update the txtCommission field and disable its editing
+        txtCommission.setText(String.valueOf(totalCommission));
+        txtCommission.setEditable(false);
     }//GEN-LAST:event_AddProductItemActionPerformed
 
     private void SuppliersComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuppliersComboBoxActionPerformed
         // TODO add your handling code here:
-     refreshSupplierProductCatalogTable();
+        refreshSupplierProductCatalogTable();
     }//GEN-LAST:event_SuppliersComboBoxActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        
-       System.out.println("CardSequencePanel: " + CardSequencePanel);
-     if (CardSequencePanel == null) {
-         System.out.println("CardSequencePanel is null");
-         return;
-     }
 
-     SalesPersonWorkAreaJPanel salesPersonWorkAreaPanel = new SalesPersonWorkAreaJPanel(business, salesperson, CardSequencePanel);
+        System.out.println("CardSequencePanel: " + CardSequencePanel);
+        if (CardSequencePanel == null) {
+            System.out.println("CardSequencePanel is null");
+            return;
+        }
 
-     CardSequencePanel.add("SalesPersonWorkAreaJPanel", salesPersonWorkAreaPanel);
-     ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+        SalesPersonWorkAreaJPanel salesPersonWorkAreaPanel = new SalesPersonWorkAreaJPanel(business, salesperson, CardSequencePanel);
 
+        CardSequencePanel.add("SalesPersonWorkAreaJPanel", salesPersonWorkAreaPanel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
 //    // Remove the current panel
 //    CardSequencePanel.remove(this);
@@ -575,25 +579,86 @@ public class ProcessOrder extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_productFrequencyAboveTargetTextFieldActionPerformed
 
-    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+    private void CancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelbtnActionPerformed
         // TODO add your handling code here:
-        if (currentOrder != null) {
-        currentOrder.CancelOrder();
-        JOptionPane.showMessageDialog(this, "Order #" + currentOrder.getModelNumber() + " has been cancelled.", "Order Cancelled", JOptionPane.INFORMATION_MESSAGE);
+        // Get the commission entered in the txtCommission text field.
+        String commissionText = txtCommission.getText();
+        float commission = 0;
+        try {
+            // Parse the commission text to a float value.
+            commission = Float.parseFloat(commissionText);
+        } catch (NumberFormatException e) {
+            // If the commission is not a valid float, show an error message.
+            JOptionPane.showMessageDialog(this, "Invalid commission entered. Please enter a numeric value.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (true) {
+            // Cancel the order
+            int choice = JOptionPane.showConfirmDialog(null, "Do you really want to cancel your order?", "Cancel Order Confirmation", JOptionPane.YES_NO_OPTION);
+
+            if (choice == JOptionPane.YES_OPTION) {
+                String selectedCustomerName = (String) customerComboBox.getSelectedItem();
+                CustomerProfile selectedCustomer = null;
+                // Look for the selected customer in the customer directory.
+                for (CustomerProfile cp : business.getCustomerDirectory().getCustomerList()) {
+                    if (cp.toString().equals(selectedCustomerName)) {
+                        selectedCustomer = cp;
+                        break;
+                    }
+                }
+
+                // If no customer is selected, show an error message.
+                if (selectedCustomer == null) {
+                    JOptionPane.showMessageDialog(this, "No customer selected.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                // Get the master order list from the business object.
+                MasterOrderList mol = business.getMasterOrderList();
+                // Create a new order with the selected customer, salesperson, and commission.
+                // Check if the current order is not null
+                currentOrder = mol.newOrder(selectedCustomer, salesperson, commission); // The newOrder method needs to accept commission as an argument.
+
+                // Update the current order with the selected customer.
+                currentOrder.setCustomer(selectedCustomer);
+                currentOrder.setSalesperson(salesperson);
+                // Clear any previous items from the current order.
+                currentOrder.getOrderitems().clear();
+                // Add code to handle the cancellation of the order here
+                currentOrder.CancelOrder();
+
+                // Zero the commission
+                txtCommission.setText("0");
+
+                // Show a message indicating that the order has been canceled
+                JOptionPane.showMessageDialog(this, "Order #" + currentOrder.getModelNumber() + " has been cancelled.", "Order Cancelled", JOptionPane.INFORMATION_MESSAGE);
+                // Clear the order items table
+                DefaultTableModel model = (DefaultTableModel) OrderItemsTable.getModel();
+                model.setRowCount(0);
+                System.out.println("Order canceled.");
+                btnBackActionPerformed(evt);
+            } else {
+                System.out.println("Order not canceled.");
+            }
+
+        } else {
+            System.out.println(currentOrder);
         }
 
-       DefaultTableModel model = (DefaultTableModel) OrderItemsTable.getModel();
-       model.setRowCount(0);
 
-    }//GEN-LAST:event_BackActionPerformed
+    }//GEN-LAST:event_CancelbtnActionPerformed
 
     private void txtCommissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCommissionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCommissionActionPerformed
 
+    private void productFrequencyBelowTargetTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productFrequencyBelowTargetTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_productFrequencyBelowTargetTextFieldActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Back;
+    private javax.swing.JButton Cancelbtn;
     private javax.swing.JButton Next;
     private javax.swing.JTable OrderItemsTable;
     private javax.swing.JTable SupplierCatalogTable;
@@ -629,49 +694,45 @@ public class ProcessOrder extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void updateSupplierCatalog() {
-        
-          refreshSupplierProductCatalogTable();
 
-        
+        refreshSupplierProductCatalogTable();
+
     }
 
     private void populateCustomerComboBox() {
         CustomerDirectory customerDirectory = business.getCustomerDirectory();
-       ArrayList<CustomerProfile> customerProfiles = customerDirectory.getCustomerList();
+        ArrayList<CustomerProfile> customerProfiles = customerDirectory.getCustomerList();
 
-    for (CustomerProfile customer : customerProfiles) {
-        customerComboBox.addItem(customer.toString()); // Assumes CustomerProfile has a meaningful toString() method
-    }
-    }
-
-   private void displaySelectedProductSummary(Product selectedProduct) {
-    if (selectedProduct == null) {
-        // Handle the case where the selected product is null
-        JOptionPane.showMessageDialog(null, "No product selected.");
-        return;
+        for (CustomerProfile customer : customerProfiles) {
+            customerComboBox.addItem(customer.toString()); // Assumes CustomerProfile has a meaningful toString() method
+        }
     }
 
-    // Create an instance of ProductSummary for the selected product
-    ProductSummary productSummary = new ProductSummary(selectedProduct);
+    private void displaySelectedProductSummary(Product selectedProduct) {
+        if (selectedProduct == null) {
+            // Handle the case where the selected product is null
+            JOptionPane.showMessageDialog(null, "No product selected.");
+            return;
+        }
 
-    // Set the product name in the productNameTextField
-    productNameTextField.setText(selectedProduct.toString());
+        // Create an instance of ProductSummary for the selected product
+        ProductSummary productSummary = new ProductSummary(selectedProduct);
 
-    // Retrieve and display the sales revenue in the productRevenueTextField
-    String revenues = String.valueOf(productSummary.getSalesRevenues());
-    productRevenueTextField.setText(revenues);
+        // Set the product name in the productNameTextField
+        productNameTextField.setText(selectedProduct.toString());
 
-    // Retrieve and display the number of sales above target
-    productFrequencyAboveTargetTextField.setText(String.valueOf(productSummary.getNumberAboveTarget()));
+        // Retrieve and display the sales revenue in the productRevenueTextField
+        String revenues = String.valueOf(productSummary.getSalesRevenues());
+        productRevenueTextField.setText(revenues);
 
-    // Retrieve and display the number of sales below target
-    productFrequencyBelowTargetTextField.setText(String.valueOf(productSummary.getNumberBelowTarget()));
+        // Retrieve and display the number of sales above target
+        productFrequencyAboveTargetTextField.setText(String.valueOf(productSummary.getNumberAboveTarget()));
 
-    // Retrieve and display the product price performance
-    productPricePerformanceTextField.setText(String.valueOf(productSummary.getProductPricePerformance()));
-}
+        // Retrieve and display the number of sales below target
+        productFrequencyBelowTargetTextField.setText(String.valueOf(productSummary.getNumberBelowTarget()));
 
-
-     
+        // Retrieve and display the product price performance
+        productPricePerformanceTextField.setText(String.valueOf(productSummary.getProductPricePerformance()));
+    }
 
 }
