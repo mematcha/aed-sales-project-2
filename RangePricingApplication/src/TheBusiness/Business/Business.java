@@ -358,4 +358,22 @@ public class Business {
         this.mastersolutionorderlist = mastersolutionorderlist;
     }
 
+    public String getSalesData() {
+       
+        StringBuilder salesData = new StringBuilder();
+    
+    // Add your logic here to retrieve sales data from your business model
+    // For example, you can iterate over orders and append relevant information
+    
+    List<Order> orders = getMasterorderlist().getOrders();
+    for (Order order : orders) {
+        // Customize this part based on your actual Order structure
+        salesData.append("Order ID: ").append(order.getModelNumber())
+                 .append(", Sales Amount: ").append(order.getOrderTotal())
+                 .append("\n");
+    }
+    
+    return salesData.toString();
+    }
+
 }
