@@ -17,6 +17,7 @@ import TheBusiness.UserAccountManagement.UserAccountDirectory;
 import UserInterface.Main.WorkSpaceProfiles.BusinessManagerWorkAreaJPanel;
 import UserInterface.Main.WorkSpaceProfiles.MarketingManagerWorkAreaJPanel1;
 import UserInterface.Main.WorkSpaceProfiles.SalesPersonWorkAreaJPanel;
+import java.awt.Dimension;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
@@ -36,6 +37,11 @@ public class PricingMainFrame extends javax.swing.JFrame {
 
     public PricingMainFrame() {
         initComponents();
+        
+        actionsidejpanel.setMinimumSize(new Dimension(150, Short.MAX_VALUE));
+        SplitHomeArea.setDividerLocation(150);
+        SplitHomeArea.setEnabled(false);
+        
         business = ConfigureABusiness.initialize();
 
     }
