@@ -353,6 +353,12 @@ public class ProcessOrder extends javax.swing.JPanel {
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 560, 80, -1));
 
         add(customerComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 160, -1));
+
+        txtCommission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCommissionActionPerformed(evt);
+            }
+        });
         add(txtCommission, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 70, 140, -1));
 
         jLabel12.setText("My Commission");
@@ -479,8 +485,8 @@ public class ProcessOrder extends javax.swing.JPanel {
 
     private void AddProductItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductItemActionPerformed
         // TODO add your handling code here:
-   int selectedRowIndex = SupplierCatalogTable.getSelectedRow();
-    
+    int selectedRowIndex = SupplierCatalogTable.getSelectedRow();
+
     if (selectedRowIndex < 0) {
         JOptionPane.showMessageDialog(null, "Please select a product to add.");
         return;
@@ -494,31 +500,42 @@ public class ProcessOrder extends javax.swing.JPanel {
 
     DefaultTableModel orderItemsModel = (DefaultTableModel) OrderItemsTable.getModel();
     boolean productExists = false;
-    
-    // Search for the product in the order items
+
     for (int i = 0; i < orderItemsModel.getRowCount(); i++) {
         Product productInTable = (Product) orderItemsModel.getValueAt(i, 0);
         if (productInTable.equals(selectedproduct)) {
             int existingQuantity = (Integer) orderItemsModel.getValueAt(i, 2);
-            orderItemsModel.setValueAt(existingQuantity + 1, i, 2); // Increment quantity
-            orderItemsModel.setValueAt((existingQuantity + 1) * selectedproduct.getTargetPrice(), i, 3); // Update item total
+            orderItemsModel.setValueAt(existingQuantity + 1, i, 2);
+            orderItemsModel.setValueAt((existingQuantity + 1) * selectedproduct.getTargetPrice(), i, 3);
             productExists = true;
             break;
         }
     }
 
-    // If the product doesn't exist in the order, add it
     if (!productExists) {
-        int actualPrice = selectedproduct.getTargetPrice(); // Here we're assuming the actual price is the target price
-        int quantity = 1; // Starting with a quantity of 1
+        int actualPrice = selectedproduct.getTargetPrice();
+        int quantity = 1;
 
         orderItemsModel.addRow(new Object[]{
-            selectedproduct,
-            actualPrice,
-            quantity,
-            actualPrice * quantity // Item total
+                selectedproduct,
+                actualPrice,
+                quantity,
+                actualPrice * quantity
         });
     }
+
+    // Calculate and update the total commission based on the added product
+    float totalCommission = 0;
+    for (int i = 0; i < orderItemsModel.getRowCount(); i++) {
+        Product product = (Product) orderItemsModel.getValueAt(i, 0);
+        int actualPrice = (Integer) orderItemsModel.getValueAt(i, 1);
+        int quantity = (Integer) orderItemsModel.getValueAt(i, 2);
+        totalCommission += 0.05 * (actualPrice * quantity);
+    }
+
+    // Update the txtCommission field and disable its editing
+    txtCommission.setText(String.valueOf(totalCommission));
+    txtCommission.setEditable(false);
     }//GEN-LAST:event_AddProductItemActionPerformed
 
     private void SuppliersComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuppliersComboBoxActionPerformed
@@ -569,6 +586,10 @@ public class ProcessOrder extends javax.swing.JPanel {
        model.setRowCount(0);
 
     }//GEN-LAST:event_BackActionPerformed
+
+    private void txtCommissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCommissionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCommissionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

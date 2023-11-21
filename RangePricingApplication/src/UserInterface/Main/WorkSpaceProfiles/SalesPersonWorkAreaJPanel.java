@@ -218,11 +218,24 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnPerformanceReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerformanceReportsActionPerformed
         // TODO add your handling code here:
+    // Display business sales report in the NetBeans console
+    displaySalesDataInConsole();
+}
 
-        CardSequencePanel.removeAll();
-         PerformanceReportsJPanel performanceReport=new PerformanceReportsJPanel(business,CardSequencePanel);
-         CardSequencePanel.add("PerformanceReportsJPanel",performanceReport);
-        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+private void displaySalesDataInConsole() {
+    // Assuming you have a method in the business class to get sales data
+    String salesData = business.getSalesData(); // Replace this with your actual method
+
+    // Check if the sales data is not empty before printing
+    if (!salesData.isEmpty()) {
+        // Print the sales data to the NetBeans console with a label
+        System.out.println("Business Sales Report:\n" + salesData);
+    } else {
+        // Print a message if there is no sales data
+        System.out.println("No sales data available.");
+        
+    }
+        
 }//GEN-LAST:event_btnPerformanceReportsActionPerformed
 
 

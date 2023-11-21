@@ -1,3 +1,4 @@
+Supplier Name,Product Name,floor,ceiling,target,actual,quantity
 Supplier1,Printer Model A,400,2300,950,950,1
 Supplier1,Scanner Model B,800,1300,950,950,1
 Supplier2,Laptop Model X,1500,2100,1800,1800,1

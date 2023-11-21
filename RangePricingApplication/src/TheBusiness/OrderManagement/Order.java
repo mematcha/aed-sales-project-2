@@ -42,6 +42,7 @@ public class Order {
         count++;
         modelNumber = count;
     }
+    
     public Order(CustomerProfile cp, SalesPersonProfile ep, float commission) {
         orderitems = new ArrayList();
         customer = cp;
@@ -206,6 +207,7 @@ public void Submit(){
     public void setModelNumber(int modelNumber) {
         this.modelNumber = modelNumber;
     }
+
 
   
 

@@ -89,6 +89,9 @@ class ConfigureABusiness {
 
     private static void readDataFromCSV(Business business, String pathtoyourcsvfilecsv) {
         try ( BufferedReader br = new BufferedReader(new FileReader(pathtoyourcsvfilecsv))) {
+            
+            br.readLine();
+
             String line;
             SupplierDirectory supplierDirectory = business.getSupplierDirectory();
 
@@ -155,7 +158,11 @@ class ConfigureABusiness {
         UserAccount ua3 = uadirectory.newUserAccount(employeeprofile0, "Admin", "admin"); /// order products for one of the customers and performed by a sales person
 /// order products for one of the customers and performed by a sales person 
     }
-
+    
+    private static void printAllData(Business business){
+        
+    }
+    
     private static void printAllProductCatalogs(Business business) {
         SupplierDirectory supplierDirectory = business.getSupplierDirectory();
         ArrayList<Supplier> suppliers = supplierDirectory.getSuplierList();
@@ -198,6 +205,7 @@ class ConfigureABusiness {
     private static void readMarketDatafromCSV(Business business, String pathtoyourcsvfilecsv) {
         try ( BufferedReader br = new BufferedReader(new FileReader(pathtoyourcsvfilecsv))) {
             String line;
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 try {
                     String[] data = line.split(",");
@@ -250,6 +258,7 @@ class ConfigureABusiness {
     private static void readUserAccountDataFromCSV(Business business, String user_accountscsv) {
         try ( BufferedReader br = new BufferedReader(new FileReader(user_accountscsv))) {
             String line;
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 try {
                     String[] data = line.split(",");
