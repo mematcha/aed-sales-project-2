@@ -5,6 +5,7 @@
 package UserInterface.Main.WorkSpaceProfiles.OrderManagement;
 
 import TheBusiness.Business.Business;
+import TheBusiness.Business.OrderTotalComparator;
 import TheBusiness.MarketModel.Market;
 import TheBusiness.MarketModel.MarketCatalog;
 import TheBusiness.OrderManagement.MasterOrderList;
@@ -13,7 +14,11 @@ import TheBusiness.ProductManagement.Product;
 import TheBusiness.Supplier.Supplier;
 import UserInterface.Main.WorkSpaceProfiles.BusinessManagerWorkAreaJPanel;
 import UserInterface.Main.WorkSpaceProfiles.SalesPersonWorkAreaJPanel;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,22 +40,60 @@ public class PerformanceReportsJPanel extends javax.swing.JPanel {
         initComponents();
 
         populateMarketBoxes();
-        populateTop3Sols();
         //populateTop3Customers();
         //populateTop3SalesPersons();
         //populateBI();
-        
+
     }
-     private void populateMarketBoxes(){
+
+    private void populateMarketBoxes() {
          MarketCatalog mc = this.business.getMarketCatalog();
-         for(Market m:mc.getMarkets()){
-             marketBox1.addItem(m.getName());
-             marketBox.addItem(m.getName());
-         }
-     }
-     private void populateTop3Sols(){
-         MasterOrderList mol =this.business.getMasterOrderList();
-     }
+        for (Market m : mc.getMarkets()) {
+            marketBox1.addItem(m.getName());
+            marketBox.addItem(m.getName());
+        }
+        populateTop3Sols();
+    }
+
+    private void populateTop3Sols() {
+    MasterOrderList mol = this.business.getMasterOrderList();
+    
+    // Get the selected item from marketBox
+    String selectedMarketValue = (String) marketBox.getSelectedItem();
+    
+    // Check if an item is selected
+    if (selectedMarketValue != null) {
+        ArrayList<Order> filteredArray = new ArrayList<Order>();
+        System.out.println(mol.getOrders().size());
+        for (Order ord : mol.getOrders()) {
+            if (ord.getMca().getMarket().getName().equals(selectedMarketValue)) {
+                filteredArray.add(ord);
+            }
+        }
+        
+        ArrayList<Order> sortedFilterArray;
+        if (filteredArray.size() > 0) {
+            Collections.sort(filteredArray, new OrderTotalComparator());
+            sortedFilterArray = filteredArray;
+            DefaultTableModel model = (DefaultTableModel) solutionTbl.getModel();
+            model.setRowCount(0);
+
+            for (Order o : sortedFilterArray) {
+                Object row[] = new Object[4];
+                row[0] = o.getModelNumber();
+                row[1] = o.getCustomer().getCustomerId();
+                row[2] = o.getOrderTotal();
+                row[3] = o.getMca().getMarket().getName();
+                model.addRow(row);
+            }
+        }
+    } else {
+        // Handle the case when no item is selected
+        System.out.println("No market selected.");
+    }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -101,15 +144,23 @@ public class PerformanceReportsJPanel extends javax.swing.JPanel {
 
         customerTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Customer", "Order Value"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(customerTbl);
 
         solutionTbl.setModel(new javax.swing.table.DefaultTableModel(
@@ -120,36 +171,71 @@ public class PerformanceReportsJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Order ID", "Customer", "OrderTotal", "Market"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(solutionTbl);
 
         salesTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "Order Value"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(salesTbl);
 
         biTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Product", "Statement"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane4.setViewportView(biTbl);
+
+        marketBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                marketBox1ItemStateChanged(evt);
+            }
+        });
+        marketBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marketBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -221,13 +307,22 @@ public class PerformanceReportsJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-         SalesPersonWorkAreaJPanel salesPersonWorkAreaPanel = new SalesPersonWorkAreaJPanel(business, CardSequencePanel);
+        SalesPersonWorkAreaJPanel salesPersonWorkAreaPanel = new SalesPersonWorkAreaJPanel(business, CardSequencePanel);
 
-    // Remove the current panel and show the previous panel
-    CardSequencePanel.removeAll();
-    CardSequencePanel.add("SalesPersonWorkArea", salesPersonWorkAreaPanel);
-    ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+        // Remove the current panel and show the previous panel
+        CardSequencePanel.removeAll();
+        CardSequencePanel.add("SalesPersonWorkArea", salesPersonWorkAreaPanel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void marketBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marketBox1ActionPerformed
+        // TODO add your handling code here:
+        populateTop3Sols();
+    }//GEN-LAST:event_marketBox1ActionPerformed
+
+    private void marketBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_marketBox1ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_marketBox1ItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

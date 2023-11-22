@@ -208,7 +208,10 @@ public void Submit(){
         this.modelNumber = modelNumber;
     }
 
-
+    @Override
+    public String toString(){
+        return this.mca.toString();
+    }
   
 
     
