@@ -5,6 +5,8 @@
  */
 package TheBusiness.MarketModel;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author kal bugrara
@@ -76,4 +78,6 @@ public class Channel {
     public void setUnitofmeasure(String unitofmeasure) {
         this.unitofmeasure = unitofmeasure;
     }
+    
+    
 }

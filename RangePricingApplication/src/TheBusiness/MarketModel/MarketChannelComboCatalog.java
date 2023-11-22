@@ -20,6 +20,10 @@ public class MarketChannelComboCatalog {
        mcalist = new ArrayList();
        
    }
+
+    public ArrayList<MarketChannelAssignment> getMcalist() {
+        return mcalist;
+    }
    
    public MarketChannelAssignment newMarketChannelCombo(Market m, Channel c){
        MarketChannelAssignment mcc = new MarketChannelAssignment(m, c);

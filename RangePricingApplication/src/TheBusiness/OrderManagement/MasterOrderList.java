@@ -14,7 +14,7 @@ import TheBusiness.SalesManagement.SalesPersonProfile;
  *
  * @author kal bugrara
  */
-public class MasterOrderList {
+public class MasterOrderList { 
     private ArrayList<Order> orders;
     MasterOrderReport masterorderreport;
     

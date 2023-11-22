@@ -9,6 +9,7 @@ import UserInterface.ProductManagement.*;
 import TheBusiness.Business.Business;
 import TheBusiness.CustomerManagement.CustomerDirectory;
 import TheBusiness.CustomerManagement.CustomerProfile;
+import TheBusiness.MarketModel.MarketChannelAssignment;
 import TheBusiness.OrderManagement.MasterOrderList;
 import TheBusiness.OrderManagement.Order;
 import TheBusiness.OrderManagement.OrderItem;
@@ -52,11 +53,20 @@ public class ProcessOrder extends javax.swing.JPanel {
 
 //        currentOrder =  mol.newOrder(customer, salesperson); //no order was made yet
         populateCustomerComboBox();
-
+        populateMcaBox();
         initializeTable();
         // Add the TableModelListener to the OrderItemsTable
     }
-
+    
+    private void populateMcaBox(){
+        ArrayList<MarketChannelAssignment> mcaList = this.business.getMarketChannelComboCatalog().getMcalist();
+        
+        for(MarketChannelAssignment mcassg:mcaList){
+            marketdropdown.addItem(mcassg.getMarket().getName().toString()+" , "+mcassg.getChannel().getChannelType());
+        }
+        
+    }
+    
     private void initializeTable() {
 
         cleanUpCombobox();
@@ -172,6 +182,7 @@ public class ProcessOrder extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         Cancelbtn = new javax.swing.JButton();
+        marketdropdown = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -357,6 +368,11 @@ public class ProcessOrder extends javax.swing.JPanel {
         });
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 560, 80, -1));
 
+        customerComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerComboBoxActionPerformed(evt);
+            }
+        });
         add(customerComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 160, -1));
 
         txtCommission.addActionListener(new java.awt.event.ActionListener() {
@@ -379,6 +395,13 @@ public class ProcessOrder extends javax.swing.JPanel {
             }
         });
         add(Cancelbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 480, 80, -1));
+
+        marketdropdown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marketdropdownActionPerformed(evt);
+            }
+        });
+        add(marketdropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 182, 90, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -656,6 +679,14 @@ public class ProcessOrder extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_productFrequencyBelowTargetTextFieldActionPerformed
 
+    private void marketdropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marketdropdownActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_marketdropdownActionPerformed
+
+    private void customerComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_customerComboBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelbtn;
@@ -684,6 +715,7 @@ public class ProcessOrder extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JComboBox<String> marketdropdown;
     private javax.swing.JTextField productFrequencyAboveTargetTextField;
     private javax.swing.JTextField productFrequencyBelowTargetTextField;
     private javax.swing.JTextField productNameTextField;
