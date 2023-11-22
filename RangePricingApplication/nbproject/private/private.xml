@@ -3,60 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/ProductManagement/ProductsReport.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/MarketAnalytics/ChannelSummary.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/Personnel/EmployeeProfile.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/Main/WorkSpaceProfiles/MarketingManagerWorkAreaJPanel1.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/data.csv</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/Personnel/EmployeeDirectory.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/CustomerManagement/CustomerSummary.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/Personnel/PersonDirectory.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/Main/ConfigureABusiness.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/MarketModel/Market.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/Personnel/Profile.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/ProductManagement/ProductSummary.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/ManageTheBusiness/PerformaceReportMarketingJPanel.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/Personnel/Person.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/CustomerManagement/CustomerProfile.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/Main/PricingMainFrame.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/OrderManagement/MasterOrderList.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/ProductManagement/Product.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/CustomerManagement/CustomersReport.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/OrderManagement/MasterOrderReport.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/ManageTheBusiness/ManagePricesJPanel.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/MarketAnalytics/MarketChannelSummary.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/ProductManagement/ProductCatalog.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/Business/Business.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/MarketAnalytics/MarketSummary.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/OrderManagement/Order.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/ManageTheBusiness/ManageTheBusinessJPanel.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/Main/WorkSpaceProfiles/OrderManagement/ManageSalesPersonOrders.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/SalesManagement/SalesPersonProfile.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/ManageTheBusiness/ManageChannelsJPanel.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/ProductManagement/ManageSalesJPanel.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/MarketModel/MarketChannelAssignment.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/Supplier/Supplier.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/SalesManagement/SalesPersonDirectory.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/Main/WorkSpaceProfiles/SalesPersonWorkAreaJPanel.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/Main/WorkSpaceProfiles/OrderManagement/ProcessOrder.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/UserAccountManagement/UserAccountDirectory.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/Main/WorkSpaceProfiles/OrderManagement/ManageProductPerformanceDetail1.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/UserAccountManagement/UserAccount.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/ProductManagement/ManageCustomersJPanel.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/MarketingManagement/MarketingPersonProfile.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/Personnel/CustomerAccount.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/ProductManagement/AdminPerformanceReportsJPanel.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/CustomerManagement/CustomerDirectory.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/Main/WorkSpaceProfiles/OrderManagement/ReviewCommisionJPanel.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/Supplier/SupplierDirectory.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/Main/WorkSpaceProfiles/BusinessManagerWorkAreaJPanel.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/ProductManagement/ManagePriceJPanel.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/ProductManagement/ManageProductPerformanceDetail.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/ManageTheBusiness/ManageBusinessDetail1.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/OrderManagement/OrderSummary.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/TheBusiness/OrderManagement/OrderItem.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/Main/WorkSpaceProfiles/OrderManagement/ManageProfileJPanel.java</file>
-            <file>file:/Users/srivarinimandali/Documents/GitHub/aed-Assignment4/RangePricingApplication/src/UserInterface/Main/WorkSpaceProfiles/OrderManagement/PerformanceReportsJPanel.java</file>
+            <file>file:/C:/Users/saatw/OneDrive/Documents/GitHub/aed-sales-project-2/RangePricingApplication/src/UserInterface/ManageTheBusiness/ManageMarketsJPanel.java</file>
         </group>
     </open-files>
 </project-private>

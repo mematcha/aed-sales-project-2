@@ -76,4 +76,9 @@ public class Channel {
     public void setUnitofmeasure(String unitofmeasure) {
         this.unitofmeasure = unitofmeasure;
     }
+
+    @Override
+    public String toString() {
+        return "Channel{" + "channeltype=" + channeltype + ", channelprice=" + channelprice + ", unitofmeasure=" + unitofmeasure + '}';
+    }
 }

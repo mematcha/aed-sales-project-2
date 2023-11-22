@@ -9,8 +9,13 @@ import TheBusiness.MarketModel.Market;
 import TheBusiness.ProductManagement.Product;
 import TheBusiness.Supplier.Supplier;
 import UserInterface.Main.WorkSpaceProfiles.MarketingManagerWorkAreaJPanel1;
+import java.awt.CardLayout;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -41,11 +46,12 @@ public class ManageMarketsJPanel extends javax.swing.JPanel {
         for (Market mainMarket : business.getMarketCatalog().getMarkets()) {
             for (Market subMarket : mainMarket.getSubmarkets()) {
                 Object[] row = {
+                    mainMarket,
                     mainMarket.getName(),
                     subMarket.getName(),
                     subMarket.getSubmarketType(),
-                    subMarket.getCharacteristics().get(0) // Assuming only one characteristic for simplicity
-                     // You need to add a getSize() method to your Market class
+//                    subMarket.getCharacteristics().get(0) // Assuming only one characteristic for simplicity
+//                     // You need to add a getSize() method to your Market class
                 };
                 model.addRow(row);
             }
@@ -68,6 +74,7 @@ public class ManageMarketsJPanel extends javax.swing.JPanel {
         btnView = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
 
         btnBack.setText("<Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +93,7 @@ public class ManageMarketsJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Market Name", "Characteristics", "SubMarket Type", "Size"
+                "Market", "Market Name", "SubMarket Name", "SubMarket Type"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -99,7 +106,9 @@ public class ManageMarketsJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(marketTable);
         if (marketTable.getColumnModel().getColumnCount() > 0) {
-            marketTable.getColumnModel().getColumn(0).setResizable(false);
+            marketTable.getColumnModel().getColumn(0).setMinWidth(0);
+            marketTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+            marketTable.getColumnModel().getColumn(0).setMaxWidth(0);
             marketTable.getColumnModel().getColumn(1).setResizable(false);
             marketTable.getColumnModel().getColumn(2).setResizable(false);
             marketTable.getColumnModel().getColumn(3).setResizable(false);
@@ -126,6 +135,13 @@ public class ManageMarketsJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,18 +150,20 @@ public class ManageMarketsJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBack)
-                        .addGap(133, 133, 133)
+                        .addGap(75, 75, 75)
                         .addComponent(btnView)
-                        .addGap(57, 57, 57)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAdd)
+                        .addGap(88, 88, 88)
                         .addComponent(btnUpdate)
-                        .addGap(34, 34, 34)
+                        .addGap(60, 60, 60)
                         .addComponent(btnDelete))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 39, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE))
+                .addGap(84, 84, 84))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,14 +171,15 @@ public class ManageMarketsJPanel extends javax.swing.JPanel {
                 .addGap(41, 41, 41)
                 .addComponent(lblTitle)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
                     .addComponent(btnView)
                     .addComponent(btnUpdate)
-                    .addComponent(btnDelete))
-                .addContainerGap(220, Short.MAX_VALUE))
+                    .addComponent(btnDelete)
+                    .addComponent(btnAdd))
+                .addContainerGap(279, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,20 +198,20 @@ public class ManageMarketsJPanel extends javax.swing.JPanel {
         // Get the selected row
     int selectedRow = marketTable.getSelectedRow();
     if (selectedRow >= 0) {
-        // Retrieve data from the selected row
-        String marketName = (String) marketTable.getValueAt(selectedRow, 0);
-        String subMarketName = (String) marketTable.getValueAt(selectedRow, 1);
-        String subMarketType = (String) marketTable.getValueAt(selectedRow, 2);
-        String characteristics = (String) marketTable.getValueAt(selectedRow, 3);
-        // Assuming you have a getSize() method in your Market class
-        int size = (int) marketTable.getValueAt(selectedRow, 4);
-
-        // You can implement your own logic to update the data
-
-        // For example, you might want to open a new JFrame or JPanel with update fields
-        // and populate those fields with the selected data for modification.
-        // Then, handle the update action in that new panel.
-    } else {
+        Market market = (Market) marketTable.getValueAt(selectedRow, 0);
+        
+        String subMarketName = (String) marketTable.getValueAt(selectedRow, 2);
+        String subMarketType = (String) marketTable.getValueAt(selectedRow, 3);
+       
+        market.setSubmarketName(subMarketName);
+        market.setSubmarketType(subMarketType);
+        market.setAdd(false);
+        
+        UpsertMarketJPanel displayMarketJPanel = new UpsertMarketJPanel(CardSequencePanel,business, market);
+        CardSequencePanel.add("DisplayMarketJPanel",displayMarketJPanel);
+        CardLayout layout = (CardLayout)CardSequencePanel.getLayout();
+        layout.next(CardSequencePanel);
+     } else {
         // No row selected
         showError("Please select a row to update.");
     }
@@ -203,19 +222,17 @@ public class ManageMarketsJPanel extends javax.swing.JPanel {
         int selectedRow = marketTable.getSelectedRow();
     if (selectedRow >= 0) {
         // Retrieve data from the selected row
-        String marketName = (String) marketTable.getValueAt(selectedRow, 0);
-        String subMarketName = (String) marketTable.getValueAt(selectedRow, 1);
-        String subMarketType = (String) marketTable.getValueAt(selectedRow, 2);
-        String characteristics = (String) marketTable.getValueAt(selectedRow, 3);
-        // Assuming you have a getSize() method in your Market class
-        int size = (int) marketTable.getValueAt(selectedRow, 4);
-
+        Market market = (Market) marketTable.getValueAt(selectedRow, 0);
+        
+       String subMarketName = (String) marketTable.getValueAt(selectedRow, 1);
+       String subMarketType = (String) marketTable.getValueAt(selectedRow, 2);
         // Display the data (You can implement your own logic to display this data)
-        System.out.println("Market Name: " + marketName);
+        System.out.println("Market Name: " + market.getName());
         System.out.println("SubMarket Name: " + subMarketName);
         System.out.println("SubMarket Type: " + subMarketType);
-        System.out.println("Characteristics: " + characteristics);
-        System.out.println("Size: " + size);
+        System.out.println("Characteristics: " + market.getCharacteristics().stream().collect(Collectors.joining(",")));
+        System.out.println("Channels: " + market.getValidchannels().toString());
+        System.out.println("Size: " + market.getSize());
     } else {
         // No row selected
         showError("Please select a row to view.");
@@ -228,12 +245,10 @@ public class ManageMarketsJPanel extends javax.swing.JPanel {
     if (selectedRow >= 0) {
         // You can implement your own logic to delete the data
 
-        // For example, you might want to show a confirmation dialog and,
-        // if the user confirms, remove the selected row from the table and
-        // update your data structure accordingly.
-        DefaultTableModel model = (DefaultTableModel) marketTable.getModel();
-        model.removeRow(selectedRow);
-
+        
+        Market market = (Market) marketTable.getValueAt(selectedRow, 0);
+        business.getMarketcatalog().getMarkets().remove(market);
+        populateMarketTable();
         // Print a message indicating the deletion
         System.out.println("Row deleted successfully.");
     } else {
@@ -241,12 +256,24 @@ public class ManageMarketsJPanel extends javax.swing.JPanel {
         showError("Please select a row to delete.");
     }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        Market market = new Market("");
+        market.setAdd(true);
+        UpsertMarketJPanel displayMarketJPanel = new UpsertMarketJPanel(CardSequencePanel,business, market);
+        CardSequencePanel.add("DisplayMarketJPanel",displayMarketJPanel);
+        CardLayout layout = (CardLayout)CardSequencePanel.getLayout();
+        layout.next(CardSequencePanel);
+
+    }//GEN-LAST:event_btnAddActionPerformed
 private void showError(String message) {
     // Use JOptionPane to show an error message dialog
     javax.swing.JOptionPane.showMessageDialog(this, message, "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;

@@ -12,15 +12,15 @@ import java.util.ArrayList;
  * @author kal bugrara
  */
 public class Market {
-
     private String name;
-        private String submarketType; // New attribute to store the submarket type
-
+    private String submarketType; // New attribute to store the submarket type
+    private String submarketName; // New attribute to store the submarket name
     private ArrayList<Channel> validchannels;
     private ArrayList<String> characteristics; //a way to describe in plain language what is that group
     private ArrayList<Market> submarkets;
     private ArrayList<MarketChannelAssignment> channelMappings = new ArrayList<>();
     private int size;
+    private boolean add;
 
     public Market(String m) {
         name = m;
@@ -138,7 +138,23 @@ public class Market {
         this.channelMappings = channelMappings;
     }
 
-    /**
+    public String getSubmarketName() {
+        return submarketName;
+    }
+
+    public void setSubmarketName(String submarketName) {
+        this.submarketName = submarketName;
+    }
+
+    public boolean isAdd() {
+        return add;
+    }
+
+    public void setAdd(boolean add) {
+        this.add = add;
+    }
+
+   /**
      * @return the marketChannelAssignment
      */
     

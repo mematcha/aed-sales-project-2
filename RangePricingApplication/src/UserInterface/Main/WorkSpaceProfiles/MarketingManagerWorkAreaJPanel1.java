@@ -11,6 +11,7 @@
 package UserInterface.Main.WorkSpaceProfiles;
 
 import TheBusiness.Business.Business;
+import TheBusiness.MarketModel.Market;
 import UserInterface.ManageTheBusiness.ManageChannelsJPanel;
 import UserInterface.ManageTheBusiness.ManageMarketsJPanel;
 import UserInterface.ManageTheBusiness.ManagePricesJPanel;
@@ -164,7 +165,7 @@ public class MarketingManagerWorkAreaJPanel1 extends javax.swing.JPanel {
     private void btnManageChannelsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageChannelsActionPerformed
         // TODO add your handling code here:
 
-        ManageChannelsJPanel manageChannels = new ManageChannelsJPanel(business, CardSequencePanel);
+        ManageChannelsJPanel manageChannels = new ManageChannelsJPanel(CardSequencePanel, business, new Market(""));
 
         CardSequencePanel.add("ManageChannelPanel", manageChannels);
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);

@@ -7,6 +7,7 @@ package UserInterface.ManageTheBusiness;
 import TheBusiness.Business.Business;
 import TheBusiness.MarketModel.Channel;
 import TheBusiness.MarketModel.ChannelCatalog;
+import TheBusiness.MarketModel.Market;
 import TheBusiness.ProductManagement.Product;
 import TheBusiness.Supplier.Supplier;
 import UserInterface.Main.WorkSpaceProfiles.MarketingManagerWorkAreaJPanel1;
@@ -23,14 +24,16 @@ public class ManageChannelsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageChannelsJPanel
      */
-     JPanel CardSequencePanel;
+     JPanel cardSequencePanel;
+     private Market market;
     Business business;
     Supplier selectedsupplier;
     Product selectedproduct;
 
-    public ManageChannelsJPanel(Business bz, JPanel jp) {
-        CardSequencePanel = jp;
-        this.business = bz;
+    public ManageChannelsJPanel(JPanel cardSequencePanel, Business business, Market market) {
+        this.cardSequencePanel = cardSequencePanel;
+        this.market = market;
+        this.business = business;
         initComponents();
         populateChannelsTable();
 
@@ -172,12 +175,12 @@ public class ManageChannelsJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         MarketingManagerWorkAreaJPanel1 marketingManagerWorkArea = new MarketingManagerWorkAreaJPanel1(business, CardSequencePanel);
+         MarketingManagerWorkAreaJPanel1 marketingManagerWorkArea = new MarketingManagerWorkAreaJPanel1(business, cardSequencePanel);
 
     // Remove the current panel and show the previous panel
-    CardSequencePanel.removeAll();
-    CardSequencePanel.add("MarketingManagerWorkArea", marketingManagerWorkArea);
-    ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+    cardSequencePanel.removeAll();
+    cardSequencePanel.add("MarketingManagerWorkArea", marketingManagerWorkArea);
+    ((java.awt.CardLayout) cardSequencePanel.getLayout()).next(cardSequencePanel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
